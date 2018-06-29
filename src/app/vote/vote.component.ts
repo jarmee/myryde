@@ -12,6 +12,7 @@ import { trigger, style, state, transition, animate, keyframes } from '@angular/
   styleUrls: ['./vote.component.scss'],
   animations: [
     trigger('swipeAnimation', [
+
       state('idle', style({
         opacity: 1,
         left: '0px', top: '0px', transform: 'rotate(0deg)'
@@ -29,7 +30,7 @@ import { trigger, style, state, transition, animate, keyframes } from '@angular/
         style({ opacity: 0, left: '-400px', top: '80px', transform: 'rotate(-15deg)', offset: 1 }),
       ]))),
       transition('right => idle, left => idle', animate(200))
-    ]
+    ])
   ]
 })
 export class VoteComponent implements OnInit {

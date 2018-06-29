@@ -21,6 +21,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
+import {AuthService} from './shared/services/auth.service';
+import {AuthGuardService} from './shared/services/auth-guard.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -49,13 +52,16 @@ import { LayoutComponent } from './layout/layout.component';
       messagingSenderId: environment.messagingSenderId
     }),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
     DataService,
-    { provide: ENDPOINT_URL, useValue: 'http://192.168.137.1:4200/assets'},
-    MockDataService
+    { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets' },
+    MockDataService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [
     AppComponent
