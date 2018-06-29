@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../shared/user.model';
+import { DataService } from '../shared/services/data.service';
 
 @Component({
   selector: 'app-rank',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankComponent implements OnInit {
 
-  constructor() { }
+  topUsers$: Observable<User[]>;
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.topUsers$ = this.dataService.getTopUsers();
   }
 
 }

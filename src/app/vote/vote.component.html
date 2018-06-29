@@ -1,3 +1,37 @@
-<p>
-  vote works!
-</p>
+<mat-card>
+  <mat-card-content>
+      <img mat-card-image [src]="car.pictures[0]">
+    <table mat-table>
+      <tbody>
+        <tr>
+          <td>Brand:</td>
+          <td>{{ car.brand }}</td>
+        </tr>
+        <tr>
+          <td>Model:</td>
+          <td>{{ car.model }}</td>
+        </tr>
+        <tr>
+          <td>Engine:</td>
+          <td>{{ car.engine }}</td>
+        </tr>
+        <tr>
+          <td>Top speed:</td>
+          <td>{{ car.topSpeed }}</td>
+        </tr>
+        <tr>
+          <td>Acceleration:</td>
+          <td>{{ car.acceleration }}</td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td>{{ car.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-button>UP</button>
+      <button mat-button>DOWN</button>
+  </mat-card-actions>
+</mat-card>

@@ -9,6 +9,8 @@ import { VoteComponent } from './vote/vote.component';
 import { RankComponent } from './rank/rank.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MyrydeMaterialModule } from './shared/myryde-material.module';
+import { DataService } from 'src/app/shared/services/data.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,17 @@ import { MyrydeMaterialModule } from './shared/myryde-material.module';
     UserProfileComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MyrydeMaterialModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    DataService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

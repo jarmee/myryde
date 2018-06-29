@@ -1,3 +1,12 @@
-<p>
-  rank works!
-</p>
+<mat-list>
+  <ng-container *ngFor="let user of (topUsers$ | async); index as index; last as last">
+    <mat-list-item>
+      <img matListAvatar [src]="user.picture" [alt]="user.name">
+      <h3 matLine> #{{index+1}} {{user.name}} </h3>
+      <p matLine>
+        <span> {{user.location}}, {{user.gender}} </span>
+      </p>
+    </mat-list-item>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </ng-container>
+</mat-list>
