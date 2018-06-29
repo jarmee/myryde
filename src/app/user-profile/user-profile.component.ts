@@ -31,13 +31,11 @@ export class UserProfileComponent implements OnInit {
       });
     this.user$ = this.route.paramMap.pipe(
       map((paramMap) => paramMap.get('id')),
-      switchMap(id => this.dataService.getUserById(id)),
-      tap(console.log)
+      switchMap(id => this.dataService.getUserById(id))
     );
     this.car$ = this.route.paramMap.pipe(
       map((paramMap) => paramMap.get('id')),
-      switchMap(id => this.dataService.getCarByUserId(id)),
-      tap(console.log)
+      switchMap(id => this.dataService.getCarByUserId(id))
     );
   }
 

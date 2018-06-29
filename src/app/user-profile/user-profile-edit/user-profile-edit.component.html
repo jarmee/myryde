@@ -1,7 +1,4 @@
-
-<!--TODO: change to reactive forms!-->
-
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <app-header title="Profile">
     <button mat-icon-button type="submit" aria-label="save">
       <mat-icon>save</mat-icon>
@@ -13,23 +10,23 @@
         <div style="display:flex; flex-direction: column; margin-right: auto; max-width: 50%;">
           <mat-card-title>
             <mat-form-field>
-              <input matInput placeholder="nickname" name="name" ngModel>
+              <input matInput placeholder="nickname" name="name" formControlName="name">
             </mat-form-field>
           </mat-card-title>
           <mat-card-subtitle>
             <mat-form-field>
-              <input matInput placeholder="gender" name="gender" ngModel>
+              <input matInput placeholder="gender" name="gender" formControlName="gender">
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="location" name="location" ngModel>
+              <input matInput placeholder="location" name="location" formControlName="location">
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="country" name="country" ngModel>
+              <input matInput placeholder="country" name="country" formControlName="country">
             </mat-form-field>
           </mat-card-subtitle>
         </div>
         <!-- TODO: the standalone stuff has to be deleted later -->
-        <app-picture-input [ngModel]="'https://avatars1.githubusercontent.com/nsacerdote?v=4&s=60'" name="picture" ngModel></app-picture-input>
+        <app-picture-input name="picture" formControlName="picture"></app-picture-input>
       </div>
     </mat-card-title-group>
   </mat-card>

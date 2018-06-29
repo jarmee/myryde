@@ -37,8 +37,8 @@ export abstract class BaseService<T extends Document> {
     return from(this.afs.collection<T>(this.collection).doc(payload.id).set(payload));
   }
 
-  update(payload: Partial<T>) {
-    console.log('update', payload);
+  update(payload: Partial<T>): Observable<void> {
+    return from(this.afs.collection<T>(this.collection).doc(payload.id).update(payload));
   }
 
   delete() {}

@@ -37,4 +37,8 @@ export class DataService {
   getCarByUserId(userId: string): Observable<Car> {
     return this.carService.getByUserId(userId);
   }
+
+  updateUser(user: User): Observable<void> {
+    return this.userService.update(user);
+  }
 }
