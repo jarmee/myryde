@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/vote', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   {
     path: '', component: LayoutComponent, canActivateChild: [AuthGuardService], children: [
       { path: 'vote', component: VoteComponent },
@@ -18,6 +18,5 @@ export const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '**', redirectTo: '/login' },
+  { path: '**', redirectTo: '/login' }
 ];

@@ -27,9 +27,15 @@ export class LoginComponent implements OnInit {
   login() {
     const user = this.form.get('user').value;
     const password = this.form.get('password').value;
-    this.authService.signIn(user, password).then((data) => {
+    this.authService.signIn(user, password).then(() => {
       this.router.navigate(['/vote']);
     }).catch(error => console.log('error', error));
+  }
+
+  register() {
+    this.authService.signUp(this.form.value.user, this.form.value.password).then(
+      () => this.router.navigate(['/vote'])
+    );
   }
 
 }
