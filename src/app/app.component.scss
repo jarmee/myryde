@@ -29,7 +29,8 @@
     display:flex;
 }
 
-.nav > button{
+.nav {
+     button{
     
     flex-basis: 40px;
     flex-grow: 0;
@@ -37,4 +38,8 @@
     display:flex;
     justify-content: center;
     align-items: center;
+     }
+     .active{
+         opacity: 0.5;
+     }
 }

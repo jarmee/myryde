@@ -5,13 +5,13 @@
   <div class="footer-nav">
     <mat-toolbar color="primary">
       <div class="nav">
-        <button (click)="selected=0;" [style.opacity]="selected==0?'0.5':1" mat-icon-button routerLink="/vote">
+        <button routerLinkActive="active" mat-icon-button routerLink="/vote">
           <mat-icon>directions_car</mat-icon>
         </button>
-        <button (click)="selected=1;" [style.opacity]="selected==1?'0.5':1"mat-icon-button routerLink="/rank">
+        <button routerLinkActive="active" mat-icon-button routerLink="/rank">
           <mat-icon>reorder</mat-icon>
         </button>
-        <button (click)="selected=2;" [style.opacity]="selected==2?'0.5':1" mat-icon-button routerLink="/userprofile">
+        <button routerLinkActive="active" mat-icon-button routerLink="/userprofile">
           <mat-icon>person</mat-icon>
         </button>
       </div>

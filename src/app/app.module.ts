@@ -14,16 +14,17 @@ import { MockDataService, ENDPOINT_URL } from './shared/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VoteComponent,
     RankComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

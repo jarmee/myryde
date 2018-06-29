@@ -1,11 +1,9 @@
-<mat-toolbar color="primary" class="stick-top">
-  <span>Ranks</span>
-  <span class="fill-remaining-space"></span>
+<app-header title="Ranks">
   <button mat-icon-button aria-label="search">
     <mat-icon>search</mat-icon>
   </button>
-</mat-toolbar>
-<mat-nav-list class="rank-list">
+</app-header>
+<mat-nav-list class="app-content">
   <ng-container *ngFor="let user of (topUsers$ | async); index as index; last as last">
     <a mat-list-item>
       <img matListAvatar [src]="user.picture" [alt]="user.name">
