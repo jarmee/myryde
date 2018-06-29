@@ -1,0 +1,23 @@
+<form [formGroup]="carFormGroup" class="car-form-container">
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Picture" name="picture" formControlName="picture">
+  </mat-form-field>
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Brand" name="brand" formControlName="brand">
+  </mat-form-field>
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Model" name="model" formControlName="model">
+  </mat-form-field>
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Engine" name="engine" formControlName="engine">
+  </mat-form-field>
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Top Speed" name="topSpeed" formControlName="topSpeed">
+  </mat-form-field>
+  <mat-form-field>
+    <input (blur)="registerTouch" matInput placeholder="Acceleration" name="acceleration" formControlName="acceleration">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea (blur)="registerTouch" matInput placeholder="Description" name="description" formControlName="description"></textarea>
+  </mat-form-field>
+</form>

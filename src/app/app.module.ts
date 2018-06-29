@@ -24,6 +24,9 @@ import {AuthService} from './shared/services/auth.service';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CarViewComponent } from './car-view/car-view.component';
+import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
+import { CarInputComponent } from './car-input/car-input.component';
+import { PictureInputComponent } from './picture-input/picture-input.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,15 @@ import { CarViewComponent } from './car-view/car-view.component';
     HeaderComponent,
     LoginComponent,
     LayoutComponent,
-    CarViewComponent
+    CarViewComponent,
+    UserProfileEditComponent,
+    CarInputComponent,
+    PictureInputComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {enableTracing: false}),
     BrowserAnimationsModule,
     MyrydeMaterialModule,
     HttpClientModule,
