@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService, ErrorResponse } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,13 +29,20 @@ export class LoginComponent implements OnInit {
     const password = this.form.get('password').value;
     this.authService.signIn(user, password).then(() => {
       this.router.navigate(['/vote']);
-    }).catch(error => console.log('error', error));
+    }).catch(error => {
+      console.log(error);
+      this.form.get('password').setErrors({ loginFailed: error });
+    });
   }
 
   register() {
     this.authService.signUp(this.form.value.user, this.form.value.password).then(
       () => this.router.navigate(['/vote'])
-    );
+    ).catch(error => {
+      if () {
+      this.form.get('password').setErrors({ loginFailed: error });
+      }
+    });
   }
 
 }

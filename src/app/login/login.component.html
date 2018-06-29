@@ -7,16 +7,15 @@
       </mat-form-field>
       <mat-form-field class="password">
         <input matInput placeholder="Password" type="password" formControlName="password">
+        <mat-error *ngIf="form.get('password').hasError('loginFailed')">
+          {{ form.get('password').getError('loginFailed').message }}
+        </mat-error>
       </mat-form-field>
       <div class="button-row">
         <button [disabled]="form.invalid" mat-raised-button class="login" color="primary">Login</button>
       </div>
       <br>
-      <button
-        mat-raised-button class="login" color="secondary"
-        type="button"
-        (click)="register()"
-        [disabled]="form.invalid">REGISTER</button>
+      <button mat-raised-button class="login" color="secondary" type="button" (click)="register()" [disabled]="form.invalid">REGISTER</button>
     </form>
   </mat-grid-tile>
 </mat-grid-list>
