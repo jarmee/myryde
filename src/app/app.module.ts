@@ -27,6 +27,7 @@ import { CarViewComponent } from './car-view/car-view.component';
 import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
 import { CarInputComponent } from './car-input/car-input.component';
 import { PictureInputComponent } from './picture-input/picture-input.component';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { PictureInputComponent } from './picture-input/picture-input.component';
     { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets' },
     MockDataService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    UserService
   ],
   bootstrap: [
     AppComponent

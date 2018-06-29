@@ -8,7 +8,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
   providedIn: 'root'
 })
 export class CarService extends BaseService<Car> {
-    constructor(private store: AngularFirestore) {
+    constructor(store: AngularFirestore) {
       super('/cars', store);
     }
 }
