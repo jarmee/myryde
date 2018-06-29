@@ -1,6 +1,11 @@
-<mat-card>
+<mat-card class="vote-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="car?.pictures[0]">
   <mat-card-content>
-      <img mat-card-image [src]="car?.pictures[0]">
     <table mat-table>
       <tbody>
         <tr>
@@ -31,7 +36,12 @@
     </table>
   </mat-card-content>
   <mat-card-actions>
-      <button mat-button (click)="upVote(car)">UP</button>
-      <button mat-button (click)="downVote(car)">DOWN</button>
+    <button mat-fab (click)="upVote(car)">
+        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+    </button>
+    <span class="fill-remaining-space"></span>
+    <button mat-fab (click)="downVote(car)" color="primary">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>
