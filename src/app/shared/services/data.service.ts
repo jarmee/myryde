@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable, timer} from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { Car } from 'src/app/shared/car.model';
+import { MockDataService } from 'src/app/shared/mock-data.service';
 import {mapTo} from 'rxjs/operators';
 import {User} from '../user.model';
 
@@ -8,8 +10,11 @@ import {User} from '../user.model';
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private service: MockDataService) { }
 
+  getCarToVote(): Observable<Car> {
+    return this.service.getCarToVote();
+  }
 
   getTopUsers(): Observable<User[]> {
     return timer(1000).pipe(
