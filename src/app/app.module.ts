@@ -18,7 +18,6 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
 import {AuthService} from './shared/services/auth.service';
@@ -34,7 +33,6 @@ import { CarViewComponent } from './car-view/car-view.component';
     UserProfileComponent,
     HeaderComponent,
     LoginComponent,
-    RegisterComponent,
     LayoutComponent,
     CarViewComponent
   ],
