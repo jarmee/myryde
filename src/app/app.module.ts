@@ -24,6 +24,7 @@ import {AuthService} from './shared/services/auth.service';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CarViewComponent } from './car-view/car-view.component';
+import { CarInputComponent } from './car-input/car-input.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CarViewComponent } from './car-view/car-view.component';
     HeaderComponent,
     LoginComponent,
     LayoutComponent,
-    CarViewComponent
+    CarViewComponent,
+    CarInputComponent
   ],
   imports: [
     CommonModule,

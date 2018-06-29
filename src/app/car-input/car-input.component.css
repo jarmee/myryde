@@ -1,0 +1,8 @@
+.car-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.car-form-container > * {
+  width: 100%;
+}
