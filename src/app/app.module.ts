@@ -17,6 +17,9 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { HeaderComponent } from './header/header.component';
     VoteComponent,
     RankComponent,
     UserProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +46,9 @@ import { HeaderComponent } from './header/header.component';
       storageBucket: environment.storageBucket,
       messagingSenderId: environment.messagingSenderId
     }),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DataService,

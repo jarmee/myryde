@@ -1,0 +1,9 @@
+mat-grid-list {
+  background: url('/assets/login-background.jpg');
+  background-size: cover;
+  height: 100%;
+
+  .password, .user, .login {
+    width: 100%;
+  }
+}
