@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from 'firebase';
+import { User as FirebaseUser } from 'firebase';
 import { Observable, ReplaySubject, from } from 'rxjs';
-import { distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
+import { distinctUntilChanged, tap, switchMap, map } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
+import { User } from 'src/app/shared/user.model';
 
 export interface ErrorResponse {
   code: string;
@@ -14,7 +15,7 @@ export interface ErrorResponse {
 export class AuthService {
 
   loggedIn = false;
-  _currentUser: ReplaySubject<User> = new ReplaySubject<User>();
+  _currentUser: ReplaySubject<FirebaseUser> = new ReplaySubject<FirebaseUser>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -23,7 +24,8 @@ export class AuthService {
 
   get currentUser(): Observable<User> {
     return this._currentUser.pipe(
-      distinctUntilChanged()
+      distinctUntilChanged(),
+      switchMap((fireBaseUser: FirebaseUser) => this.userService.getById(fireBaseUser.uid))
     );
   }
 
@@ -37,7 +39,7 @@ export class AuthService {
     });
   }
 
-  signUp(email: string, password: string): Observable<void> {
+  signUp(email: string, password: string): Observable<User> {
     return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password)).pipe(
       tap((authInfo) => this._currentUser.next(authInfo.user)),
       tap(() => this.loggedIn = true),
@@ -47,7 +49,8 @@ export class AuthService {
 
   signIn(email: string, password: string): Observable<any> {
     return from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
-      tap(() => this.loggedIn = true)
+      tap(() => this.loggedIn = true),
+      switchMap((authInfo) => this.userService.getById(authInfo.user.uid))
     );
   }
 

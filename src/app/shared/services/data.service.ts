@@ -5,15 +5,18 @@ import { MockDataService } from 'src/app/shared/mock-data.service';
 import { switchMap, map } from 'rxjs/operators';
 import {User} from '../user.model';
 import { CarService } from 'src/app/shared/services/car.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private service: MockDataService, private carService: CarService) {
-
-   }
+  constructor(
+    private service: MockDataService,
+    private carService: CarService,
+    private userService: UserService
+  ) {}
 
   getCarToVote(): Observable<Car> {
     return this.carService.getAll().pipe(
@@ -28,6 +31,10 @@ export class DataService {
   }
 
   getUserById(id: string): Observable<User> {
-    return this.service.getUser();
+    return this.userService.getById(id);
+  }
+
+  getCarByUserId(userId: string): Observable<Car> {
+    return this.carService.getByUserId(userId);
   }
 }

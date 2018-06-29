@@ -15,8 +15,8 @@ export const routes: Routes = [
       { path: 'vote', component: VoteComponent },
       { path: 'rank', component: RankComponent },
       { path: 'rank/profile/:id', component: UserProfileComponent, data: { readOnly: true } },
-      { path: 'userprofile', component: UserProfileComponent },
-      { path: 'userprofile/edit', component: UserProfileEditComponent },
+      { path: 'userprofile/:id', component: UserProfileComponent },
+      { path: 'userprofile/:id/edit', component: UserProfileEditComponent },
       { path: 'car-test', component: CarInputComponent }
     ]
   },
