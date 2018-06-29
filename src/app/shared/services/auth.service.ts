@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
-import { Observable, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { Observable, ReplaySubject, from } from 'rxjs';
+import { distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
+import { UserService } from 'src/app/shared/services/user.service';
 
 export interface ErrorResponse {
   code: string;
@@ -15,7 +16,10 @@ export class AuthService {
   loggedIn = false;
   _currentUser: ReplaySubject<User> = new ReplaySubject<User>();
 
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private userService: UserService
+  ) {}
 
   get currentUser(): Observable<User> {
     return this._currentUser.pipe(
@@ -29,23 +33,21 @@ export class AuthService {
       if (user) {
         this.loggedIn = true;
       }
+      return user;
     });
   }
 
-  signUp(email: string, password: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
-      (authInfo) => {
-        this._currentUser.next(authInfo.user);
-        this.loggedIn = true;
-      }
+  signUp(email: string, password: string): Observable<void> {
+    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password)).pipe(
+      tap((authInfo) => this._currentUser.next(authInfo.user)),
+      tap(() => this.loggedIn = true),
+      switchMap((authInfo) => this.userService.createEmptyUser(authInfo.user))
     );
   }
 
-  signIn(email: string, password: string): Promise<any> {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
-      (authInfo) => {
-        this.loggedIn = true;
-      }
+  signIn(email: string, password: string): Observable<any> {
+    return from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
+      tap(() => this.loggedIn = true)
     );
   }
 
