@@ -1,10 +1,11 @@
 <mat-card class="vote-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
   <img mat-card-image [src]="car?.pictures[0]">
+  <mat-card-header>
+    <img mat-card-avatar [src]="user?.picture">
+    <mat-card-title>{{ user?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ user?.location }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
   <mat-card-content>
     <table mat-table>
       <tbody>

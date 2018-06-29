@@ -21,13 +21,19 @@ export class MockDataService {
     return this.http.get<User[]>(`${this.endPointUrl}/user-data.json`);
   }
 
+  getUser(): Observable<User> {
+    return this.getUsers().pipe(
+      map((users) => users[Math.ceil(Math.random() * users.length - 1)])
+    );
+  }
+
   getUsersByRankRange(fromRank = 1, toRank = 25): Observable<User[]> {
     return this.getUsers().pipe(
       map((users) => {
         if (toRank > users.length) {
           toRank = users.length;
         }
-        return users.slice(fromRank-1, toRank);
+        return users.slice(fromRank - 1, toRank);
       })
     );
   }
