@@ -3,5 +3,5 @@
         <img mat-card-md-image [src]="src"/>
     </label>
 
-    <input id="file-input" type="file" (change)="changePictureFromUserPick($event)"/>
+    <input id="file-input" type="file" (change)="changePictureFromUserPick($event)" (click)="onTouchedCallback()"/>
 </div>
