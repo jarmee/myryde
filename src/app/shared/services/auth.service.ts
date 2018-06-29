@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+export interface ErrorResponse {
+  code: string;
+  message: string;
+}
+
 @Injectable()
 export class AuthService {
 
