@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -19,6 +20,7 @@ import { MyrydeMaterialModule } from './shared/myryde-material.module';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
     MyrydeMaterialModule
   ],
   providers: [],
