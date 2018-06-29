@@ -6,9 +6,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from 'src/app/register/register.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/vote', pathMatch: 'full' },
+  { path: '', redirectTo: 'vote', pathMatch: 'full' },
   { path: 'vote', component: VoteComponent },
   { path: 'rank', component: RankComponent },
+  { path: 'rank/profile/:id', component: UserProfileComponent, data : { readOnly : true } },
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

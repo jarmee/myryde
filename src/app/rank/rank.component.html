@@ -5,12 +5,10 @@
 </app-header>
 <mat-nav-list class="app-content">
   <ng-container *ngFor="let user of (topUsers$ | async); index as index; last as last">
-    <a mat-list-item>
+    <a mat-list-item routerLink="profile/0">
       <img matListAvatar [src]="user.picture" [alt]="user.name">
       <h3 matLine> #{{index+1}} - {{user.name}} </h3>
-      <p matLine>
-        <span> {{user.location}}, {{user.gender}} </span>
-      </p>
+      <p matLine> {{user.location}}, {{user.gender}}  </p>
     </a>
     <mat-divider *ngIf="!last"></mat-divider>
   </ng-container>
