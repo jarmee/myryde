@@ -1,21 +1,3 @@
-<!-- <mat-icon>home</mat-icon>
-
-<mat-toolbar>
-  <span>My Application</span>
-</mat-toolbar>
-<router-outlet></router-outlet>
-<ul>
-  <li>
-    <a routerLink="/vote">Voting</a>
-  </li>
-  <li>
-    <a routerLink="/rank">Ranking</a>
-  </li>
-  <li>
-    <a routerLink="/userprofile">Profile</a>
-  </li>
-</ul> -->
-
 <div class="view">
   <div class="content">
     <router-outlet></router-outlet>
@@ -23,13 +5,13 @@
   <div class="footer-nav">
     <mat-toolbar color="primary">
       <div class="nav">
-        <button mat-icon-button routerLink="/vote">
+        <button (click)="selected=0;" [style.opacity]="selected==0?'0.5':1" mat-icon-button routerLink="/vote">
           <mat-icon>directions_car</mat-icon>
         </button>
-        <button mat-icon-button routerLink="/rank">
+        <button (click)="selected=1;" [style.opacity]="selected==1?'0.5':1"mat-icon-button routerLink="/rank">
           <mat-icon>reorder</mat-icon>
         </button>
-        <button mat-icon-button routerLink="/userprofile">
+        <button (click)="selected=2;" [style.opacity]="selected==2?'0.5':1" mat-icon-button routerLink="/userprofile">
           <mat-icon>person</mat-icon>
         </button>
       </div>
