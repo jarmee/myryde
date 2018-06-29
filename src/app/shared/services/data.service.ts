@@ -21,4 +21,8 @@ export class DataService {
       switchMap(() => this.service.getUsersByRankRange(1, 10))
     );
   }
+
+  getUserById(id: string): Observable<User> {
+    return this.service.getUser();
+  }
 }
