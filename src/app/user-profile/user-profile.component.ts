@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../shared/services/data.service';
+import { Observable } from 'rxjs';
+import { User } from '../shared/user.model';
+import { tap } from 'rxjs/operators';
+import { Car } from '../shared/car.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,14 +15,19 @@ export class UserProfileComponent implements OnInit {
 
   readOnly: boolean;
 
-  constructor(private route: ActivatedRoute) { }
+  user$: Observable<User>;
+  car$: Observable<Car>;
+
+  constructor(private route: ActivatedRoute, private dataService: DataService) { }
 
   ngOnInit() {
     this.route.data
       .subscribe(data => {
         this.readOnly = !!data.readOnly;
       });
-
+    this.user$ = this.dataService.getUserById('1').pipe(
+      tap(() => { this.car$ = this.dataService.getCarToVote(); })
+    );
   }
 
 }
