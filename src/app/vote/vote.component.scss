@@ -1,0 +1,39 @@
+.vote-card {
+  margin: 10px;
+}
+
+img {
+  //background-size: cover;
+}
+
+mat-card-content {
+  padding-top: 10px;
+}
+
+:host{
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+mat-card{
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .img{
+    flex-shrink: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .description{
+    flex-shrink: 0;
+    flex-grow: 100;
+    mat-card-header{
+      margin-top: 8px;
+    }
+  }
+}
