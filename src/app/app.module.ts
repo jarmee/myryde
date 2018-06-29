@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
+import {AuthService} from './shared/services/auth.service';
+import {AuthGuardService} from './shared/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { LayoutComponent } from './layout/layout.component';
   providers: [
     DataService,
     { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets' },
-    MockDataService
+    MockDataService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [
     AppComponent
