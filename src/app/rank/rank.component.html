@@ -1,15 +1,15 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="stick-top">
   <span>Ranks</span>
   <span class="fill-remaining-space"></span>
   <button mat-icon-button aria-label="search">
     <mat-icon>search</mat-icon>
   </button>
 </mat-toolbar>
-<mat-nav-list>
+<mat-nav-list class="rank-list">
   <ng-container *ngFor="let user of (topUsers$ | async); index as index; last as last">
     <a mat-list-item>
       <img matListAvatar [src]="user.picture" [alt]="user.name">
-      <h3 matLine> #{{index+1}} {{user.name}} </h3>
+      <h3 matLine> #{{index+1}} - {{user.name}} </h3>
       <p matLine>
         <span> {{user.location}}, {{user.gender}} </span>
       </p>

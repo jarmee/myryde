@@ -1,0 +1,9 @@
+.stick-top {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.rank-list {
+  padding-top: 56px;
+}
