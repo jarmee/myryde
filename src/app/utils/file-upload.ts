@@ -5,9 +5,15 @@ export function getFileSourceFromFilePicker(event: any): Observable<string> {
     const observer = new Subject<string>();
 
     const fReader = new FileReader();
-    fReader.readAsDataURL(event.target.files[0]);
-    fReader.onloadend = function (innerEvent: any) {
-        observer.next(innerEvent.target.result);
-    };
+    if (event.target.files[0]) {
+
+
+        fReader.readAsDataURL(event.target.files[0]);
+        fReader.onloadend = function (innerEvent: any) {
+            observer.next(innerEvent.target.result);
+        };
+    } else {
+        return null;
+    }
     return observer.asObservable();
 }

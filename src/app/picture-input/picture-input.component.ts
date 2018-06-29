@@ -27,11 +27,15 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
   }
 
   changePictureFromUserPick(event: any) {
-    getFileSourceFromFilePicker(event)
-      .subscribe(src => {
-        this.src = src;
-        this.onChangeCallback(src);
-      });
+    const observable = getFileSourceFromFilePicker(event);
+    if (observable) {
+      getFileSourceFromFilePicker(event)
+        .subscribe(src => {
+          this.src = src;
+          this.onChangeCallback(src);
+        });
+    }
+
   }
 
   writeValue(obj: any): void {

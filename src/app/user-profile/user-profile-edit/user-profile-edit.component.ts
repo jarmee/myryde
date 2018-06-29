@@ -13,4 +13,7 @@ export class UserProfileEditComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(event: any) {
+    console.log(event);
+  }
 }
