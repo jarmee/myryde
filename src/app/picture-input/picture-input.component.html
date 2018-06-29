@@ -1,0 +1,7 @@
+<div class="image-upload">
+    <label for="file-input">
+        <img mat-card-md-image [src]="src"/>
+    </label>
+
+    <input id="file-input" type="file" (change)="changePictureFromUserPick($event)"/>
+</div>

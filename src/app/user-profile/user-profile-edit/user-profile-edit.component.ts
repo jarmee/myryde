@@ -8,14 +8,7 @@ import { getFileSourceFromFilePicker } from '../../utils/file-upload';
 })
 export class UserProfileEditComponent implements OnInit {
 
-  src$: any;
-
   constructor() { }
-
-
-  changeProfilePicture(event: any) {
-    this.src$ = getFileSourceFromFilePicker(event);
-  }
 
   ngOnInit() {
   }

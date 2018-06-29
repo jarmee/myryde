@@ -26,6 +26,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CarViewComponent } from './car-view/car-view.component';
 import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
 import { CarInputComponent } from './car-input/car-input.component';
+import { PictureInputComponent } from './picture-input/picture-input.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { CarInputComponent } from './car-input/car-input.component';
     LoginComponent,
     LayoutComponent,
     CarViewComponent,
-    UserProfileEditComponent
-    CarInputComponent
+    UserProfileEditComponent,
+    CarInputComponent,
+    PictureInputComponent
   ],
   imports: [
     CommonModule,
