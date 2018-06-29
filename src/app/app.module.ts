@@ -13,13 +13,15 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { MockDataService, ENDPOINT_URL } from './shared/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VoteComponent,
     RankComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
