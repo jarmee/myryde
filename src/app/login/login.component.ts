@@ -39,9 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.signUp(this.form.value.user, this.form.value.password).then(
       () => this.router.navigate(['/vote'])
     ).catch(error => {
-      if () {
       this.form.get('password').setErrors({ loginFailed: error });
-      }
     });
   }
 
