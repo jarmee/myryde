@@ -24,10 +24,11 @@ import { DataService } from 'src/app/shared/services/data.service';
     BrowserAnimationsModule,
     MyrydeMaterialModule
   ],
-  providers: [],
-  bootstrap: [
-    AppComponent,
+  providers: [
     DataService
+  ],
+  bootstrap: [
+    AppComponent
   ]
 })
 export class AppModule { }
