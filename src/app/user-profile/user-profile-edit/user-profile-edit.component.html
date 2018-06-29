@@ -5,7 +5,8 @@
   </app-header>
   <mat-card class="app-content" style="margin-top: 5px">
     <mat-card-title-group>
-      <img mat-card-md-image src="https://avatars1.githubusercontent.com/nsacerdote?v=4&s=60" alt="test">
+      <img mat-card-md-image [src]="src$ | async" alt="test">
+      <input type="file" (change)="changeProfilePicture($event)">
       <mat-card-title>Natalio</mat-card-title>
       <mat-card-subtitle>LPA, Male</mat-card-subtitle>
     </mat-card-title-group>

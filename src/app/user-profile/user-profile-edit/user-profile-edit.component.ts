@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getFileSourceFromFilePicker } from '../../utils/file-upload';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileEditComponent implements OnInit {
 
+  src$: any;
+
   constructor() { }
+
+
+  changeProfilePicture(event: any) {
+    this.src$ = getFileSourceFromFilePicker(event);
+  }
 
   ngOnInit() {
   }

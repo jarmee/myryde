@@ -3,17 +3,14 @@
     <mat-icon>edit</mat-icon>
   </button>
 </app-header>
-<form>
-  <mat-card class="app-content" style="margin-top: 5px">
-    <mat-card-title-group>
-      <img mat-card-md-image src="https://avatars1.githubusercontent.com/nsacerdote?v=4&s=60" alt="test">
-      <input type="file">
-      <mat-card-title>Natalio</mat-card-title>
-      <mat-card-subtitle>LPA, Male</mat-card-subtitle>
-    </mat-card-title-group>
-  </mat-card>
+<mat-card class="app-content" style="margin-top: 5px">
+  <mat-card-title-group>
+    <img mat-card-md-image src="https://avatars1.githubusercontent.com/nsacerdote?v=4&s=60" alt="test">
+    <mat-card-title>Natalio</mat-card-title>
+    <mat-card-subtitle>LPA, Male</mat-card-subtitle>
+  </mat-card-title-group>
+</mat-card>
 
-  <mat-card>
-    <app-car-view [car]="car$ | async" [user]="user$ | async"></app-car-view>
-  </mat-card>
-</form>
+<mat-card>
+  <app-car-view [car]="car$ | async" [user]="user$ | async"></app-car-view>
+</mat-card>
