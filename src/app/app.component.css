@@ -29,7 +29,8 @@
 }
 
 .nav > button{
-    flex-basis: 0;
+    
+    flex-basis: 40px;
     flex-grow: 0;
     margin:auto;
     display:flex;
