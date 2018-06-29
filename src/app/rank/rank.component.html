@@ -1,8 +1,8 @@
 <mat-list>
-  <ng-container *ngFor="let user of (topUsers$ | async); last as last">
+  <ng-container *ngFor="let user of (topUsers$ | async); index as index; last as last">
     <mat-list-item>
       <img matListAvatar [src]="user.picture" [alt]="user.name">
-      <h3 matLine> {{user.name}} </h3>
+      <h3 matLine> #{{index+1}} {{user.name}} </h3>
       <p matLine>
         <span> {{user.location}}, {{user.gender}} </span>
       </p>
