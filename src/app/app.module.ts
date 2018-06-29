@@ -25,6 +25,7 @@ import {AuthGuardService} from './shared/services/auth-guard.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CarViewComponent } from './car-view/car-view.component';
 import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
+import { CarInputComponent } from './car-input/car-input.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-
     LayoutComponent,
     CarViewComponent,
     UserProfileEditComponent
+    CarInputComponent
   ],
   imports: [
     CommonModule,
