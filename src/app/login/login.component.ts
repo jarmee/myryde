@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(user, password).then(() => {
       this.router.navigate(['/vote']);
     }).catch(error => {
-      console.log(error);
       this.form.get(getInvalidField(error)).setErrors({ loginFailed: error });
     });
   }
@@ -50,7 +49,6 @@ export class LoginComponent implements OnInit {
     this.authService.signUp(this.form.value.user, this.form.value.password).then(
       () => this.router.navigate(['/vote'])
     ).catch(error => {
-      console.log(error);
       this.form.get(getInvalidField(error)).setErrors({ loginFailed: error });
     });
   }
