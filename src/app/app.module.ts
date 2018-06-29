@@ -24,6 +24,7 @@ import { LayoutComponent } from './layout/layout.component';
 import {AuthService} from './shared/services/auth.service';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CarViewComponent } from './car-view/car-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    LayoutComponent
+    LayoutComponent,
+    CarViewComponent
   ],
   imports: [
     CommonModule,

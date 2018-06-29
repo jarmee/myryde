@@ -2,55 +2,20 @@
 </app-header>
 <mat-card class="vote-card app-content" (swipeleft)="swipeAnimation = 'left'" (swiperight)="swipeAnimation = 'right'" (swipe)="onSwipe($event)"
   [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
-
-  <div class="img">
-    <img mat-card-image [src]="car?.pictures[0]">
-  </div>
-  <div class="description">
+  <app-car-view [car]="car" [user]="user">
     <mat-card-header>
       <img mat-card-avatar [src]="user?.picture">
       <mat-card-title>{{ user?.name }}</mat-card-title>
       <mat-card-subtitle>{{ user?.location }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <table mat-table>
-        <tbody>
-          <tr>
-            <td>Brand:</td>
-            <td>{{ car?.brand }}</td>
-          </tr>
-          <tr>
-            <td>Model:</td>
-            <td>{{ car?.model }}</td>
-          </tr>
-          <tr>
-            <td>Engine:</td>
-            <td>{{ car?.engine }}</td>
-          </tr>
-          <tr>
-            <td>Top speed:</td>
-            <td>{{ car?.topSpeed }}</td>
-          </tr>
-          <tr>
-            <td>Acceleration:</td>
-            <td>{{ car?.acceleration }}</td>
-          </tr>
-          <tr>
-            <td>Description:</td>
-            <td>{{ car?.description }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-fab (click)="upVote(car)">
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-      <span class="fill-remaining-space"></span>
-      <button mat-fab (click)="downVote(car)" color="primary">
-        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
-      </button>
-    </mat-card-actions>
-  </div>
+  </app-car-view>
+  <mat-card-actions>
+    <button mat-fab (click)="upVote(car)">
+      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+    </button>
+    <span class="fill-remaining-space"></span>
+    <button mat-fab (click)="downVote(car)" color="primary">
+      <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+    </button>
+  </mat-card-actions>
 </mat-card>
