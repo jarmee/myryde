@@ -6,19 +6,4 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  currentUser: any;
-  constructor(private authService: AuthService) {
-    this.currentUser = authService.currentUser;
-  }
-
-
-  ngOnInit(): void {
-    this.currentUser = this.authService.currentUser;
-  }
-
-
-  ngAfterViewInit(): void {
-    this.currentUser = this.authService.currentUser;
-  }
-}
+export class AppComponent {}
