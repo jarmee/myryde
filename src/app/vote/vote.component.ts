@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/shared/car.model';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-vote',
@@ -9,25 +10,27 @@ import { Car } from 'src/app/shared/car.model';
 })
 export class VoteComponent implements OnInit {
 
-  car: Car = {
-    pictures: ['https://i.pinimg.com/736x/2d/c7/72/2dc772ca80d8adb6a169a3815c46e284--matte-black-cars-matte-cars.jpg'],
-    brand: 'BMW',
-    model: '7',
-    engine: 'What ever',
-    topSpeed: 300,
-    acceleration: 3,
-    userId: '',
-    id: '',
-    description: `Lorem ipsum dolor amet leggings hella green juice mlkshk tilde scenester.
-                  Before they sold out skateboard retro, farm-to-table salvia unicorn air
-                  plant fam. Meditation fashion axe seitan tumeric raclette banjo street art.
-                  Mumblecore af cold-pressed coloring book pug chia.`,
-  };
+  car: Car;
 
-  constructor() { }
+  constructor(private service: DataService) { }
 
   ngOnInit() {
+    this.fetchRandom();
+  }
 
+  upVote() {
+    this.fetchRandom();
+  }
+
+  downVote() {
+    this.fetchRandom();
+  }
+
+  fetchRandom() {
+    this.service.getCarToVote().subscribe((car) => {
+      console.log(car);
+      this.car = car;
+    });
   }
 
 }
