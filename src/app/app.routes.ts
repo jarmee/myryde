@@ -5,16 +5,18 @@ import { UserProfileComponent } from 'src/app/user-profile/user-profile.componen
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from 'src/app/register/register.component';
 import { LayoutComponent } from './layout/layout.component';
-import {AuthGuardService} from './shared/services/auth-guard.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-profile-edit.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: '', component: LayoutComponent, canActivateChild: [AuthGuardService], children: [
       { path: 'vote', component: VoteComponent },
       { path: 'rank', component: RankComponent },
       { path: 'rank/profile/:id', component: UserProfileComponent, data: { readOnly: true } },
       { path: 'userprofile', component: UserProfileComponent },
+      { path: 'userprofile/edit', component: UserProfileEditComponent },
     ]
   },
   { path: 'login', component: LoginComponent },
