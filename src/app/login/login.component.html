@@ -4,6 +4,9 @@
     <form novalidate (ngSubmit)="login()" [formGroup]="form">
       <mat-form-field class="user">
         <input matInput placeholder="E-Mail" formControlName="user">
+        <mat-error *ngIf="form.get('user').hasError('loginFailed')">
+            {{ form.get('user').getError('loginFailed').message }}
+          </mat-error>
       </mat-form-field>
       <mat-form-field class="password">
         <input matInput placeholder="Password" type="password" formControlName="password">

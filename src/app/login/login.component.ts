@@ -3,6 +3,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService, ErrorResponse } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 
+
+
+const errorFieldMap: { [key: string]: string } = {
+  'auth/invalid-email': 'user',
+  'auth/email-already-in-use': 'user'
+};
+
+function getInvalidField(error: ErrorResponse): string {
+  return ( errorFieldMap[error.code] && errorFieldMap[error.code] != null ? errorFieldMap[error.code] : 'password');
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/vote']);
     }).catch(error => {
       console.log(error);
-      this.form.get('password').setErrors({ loginFailed: error });
+      this.form.get(getInvalidField(error)).setErrors({ loginFailed: error });
     });
   }
 
@@ -39,7 +50,8 @@ export class LoginComponent implements OnInit {
     this.authService.signUp(this.form.value.user, this.form.value.password).then(
       () => this.router.navigate(['/vote'])
     ).catch(error => {
-      this.form.get('password').setErrors({ loginFailed: error });
+      console.log(error);
+      this.form.get(getInvalidField(error)).setErrors({ loginFailed: error });
     });
   }
 
