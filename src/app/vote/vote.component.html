@@ -1,4 +1,4 @@
-<mat-card class="vote-card">
+<mat-card class="vote-card" (swipeleft)="swipeAnimation = 'left'" (swiperight)="swipeAnimation = 'right'" (swipe)="onSwipe($event)" [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
   <div class="img">
     <img mat-card-image [src]="car?.pictures[0]">
   </div>
