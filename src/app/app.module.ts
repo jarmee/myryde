@@ -13,6 +13,10 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { MockDataService, ENDPOINT_URL } from './shared/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -27,11 +31,20 @@ import { CommonModule } from '@angular/common';
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MyrydeMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+      apiKey: environment.apiKey,
+      authDomain: environment.authDomain,
+      databaseURL: environment.databaseURL,
+      projectId: environment.projectId,
+      storageBucket: environment.storageBucket,
+      messagingSenderId: environment.messagingSenderId
+    }),
+    AngularFirestoreModule
   ],
   providers: [
     DataService,
-    { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets'},
+    { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets' },
     MockDataService
   ],
   bootstrap: [
