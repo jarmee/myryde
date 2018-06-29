@@ -12,6 +12,7 @@ import { MyrydeMaterialModule } from './shared/myryde-material.module';
 import { DataService } from 'src/app/shared/services/data.service';
 import { MockDataService, ENDPOINT_URL } from './shared/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserProfileComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
