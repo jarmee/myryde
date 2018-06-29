@@ -10,3 +10,7 @@
     <mat-card-subtitle>LPA, Male</mat-card-subtitle>
   </mat-card-title-group>
 </mat-card>
+
+<mat-card>
+  <app-car-view [car]="car$ | async" [user]="user$ | async"></app-car-view>
+</mat-card>

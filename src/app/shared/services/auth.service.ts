@@ -14,7 +14,11 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth) {}
 
   isLoggedIn() {
-    return this.loggedIn;
+    return this.loggedIn || this.afAuth.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.loggedIn = true;
+      }
+    });
   }
 
   signUp(email: string, password: string) {
