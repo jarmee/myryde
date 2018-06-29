@@ -9,9 +9,9 @@ export abstract class BaseService<T> {
   getById(id: string) {
     return this.afs.doc<T>(`${this.collection}/${id}`).snapshotChanges().pipe(
       map(action => {
-        const data = action.payload.data();
-        const id = action.payload.id;
-        return { id, ...data };
+        const data: any = action.payload.data();
+        const docId = action.payload.id;
+        return { docId, ...data };
       })
     );
   }
@@ -20,7 +20,7 @@ export abstract class BaseService<T> {
     return this.afs.collection<T>(this.collection).snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
-          const data = a.payload.doc.data();
+          const data: any = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { id, ...data };
         });
