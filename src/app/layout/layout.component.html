@@ -1,0 +1,20 @@
+<div class="view">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer-nav">
+    <mat-toolbar color="primary">
+      <div class="nav">
+        <button routerLinkActive="active" mat-icon-button routerLink="/vote">
+          <mat-icon>directions_car</mat-icon>
+        </button>
+        <button routerLinkActive="active" mat-icon-button routerLink="/rank">
+          <mat-icon>reorder</mat-icon>
+        </button>
+        <button routerLinkActive="active" mat-icon-button routerLink="/userprofile">
+          <mat-icon>person</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+  </div>
+</div>

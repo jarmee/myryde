@@ -13,13 +13,25 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { MockDataService, ENDPOINT_URL } from './shared/mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VoteComponent,
     RankComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent,
+    LayoutComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +39,18 @@ import { CommonModule } from '@angular/common';
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MyrydeMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+      apiKey: environment.apiKey,
+      authDomain: environment.authDomain,
+      databaseURL: environment.databaseURL,
+      projectId: environment.projectId,
+      storageBucket: environment.storageBucket,
+      messagingSenderId: environment.messagingSenderId
+    }),
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DataService,

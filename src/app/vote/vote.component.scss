@@ -3,7 +3,7 @@
 }
 
 img {
-  //background-size: cover;
+//  background-size: cover;
 }
 
 mat-card-content {
@@ -12,8 +12,9 @@ mat-card-content {
 
 :host{
   height: 100%;
-  display: flex;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 mat-card{

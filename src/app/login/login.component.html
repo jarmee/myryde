@@ -1,0 +1,15 @@
+<mat-grid-list cols="1">
+  <mat-grid-tile>
+    <form novalidate (ngSubmit)="login()" [formGroup]="form">
+      <mat-form-field class="user">
+        <input matInput placeholder="E-Mail" formControlName="user">
+      </mat-form-field>
+      <mat-form-field class="password">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button class="login" color="primary">Login</button>
+      </div>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>
