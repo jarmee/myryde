@@ -1,6 +1,7 @@
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { map, mapTo } from 'rxjs/operators';
 import { Observable, from } from 'rxjs';
+import { firestore } from 'firebase';
 
 export interface Document {
   id?: any;
@@ -9,6 +10,19 @@ export interface Document {
 export abstract class BaseService<T extends Document> {
 
   constructor(protected collection: string, protected afs: AngularFirestore) {
+  }
+
+  getByQuery(field: string, operator: firestore.WhereFilterOp, value: string): Observable<T[]> {
+    return this.afs.collection<T>(this.collection, (ref) => ref.where(field, operator, value)).snapshotChanges().pipe(
+
+      map((actions: DocumentChangeAction<T>[]) => {
+        return actions.map(a => {
+          const data: any = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
   }
 
   getById(id: string) {
@@ -34,7 +48,8 @@ export abstract class BaseService<T extends Document> {
   }
 
   create(payload: Partial<T>): Observable<void> {
-    return from(this.afs.collection<T>(this.collection).doc(payload.id).set(payload));
+    console.log(payload);
+    return from(this.afs.collection<T>(this.collection).doc(payload.id).set(payload).then());
   }
 
   createWithId(payload: T): Observable<void> {
@@ -47,6 +62,6 @@ export abstract class BaseService<T extends Document> {
     return from(this.afs.collection<T>(this.collection).doc(payload.id).update(payload));
   }
 
-  delete() {}
+  delete() { }
 
 }

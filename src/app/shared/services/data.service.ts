@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { Car } from 'src/app/shared/car.model';
 import { MockDataService } from 'src/app/shared/mock-data.service';
-import { switchMap, map } from 'rxjs/operators';
-import {User} from '../user.model';
+import { switchMap, map, tap } from 'rxjs/operators';
+import { User } from '../user.model';
 import { CarService } from 'src/app/shared/services/car.service';
 import { UserService } from './user.service';
 
@@ -16,11 +16,14 @@ export class DataService {
     private service: MockDataService,
     private carService: CarService,
     private userService: UserService
-  ) {}
+  ) { }
 
-  getCarToVote(): Observable<Car> {
+  getCarToVote(blacklist: string[]): Observable<Car> {
     return this.carService.getAll().pipe(
-      map(cars => cars[Math.ceil(Math.random() * cars.length - 1 )])
+      tap(cars => {
+        console.log(cars);
+      }),
+      map(cars => cars[Math.ceil(Math.random() * cars.length - 1)])
     );
   }
 

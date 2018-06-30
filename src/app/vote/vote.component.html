@@ -1,6 +1,6 @@
 <app-header title="Vote">
 </app-header>
-<mat-card class="vote-card app-content" (swipeleft)="swipeAnimation = 'left'" (swiperight)="swipeAnimation = 'right'" (swipe)="onSwipe($event)"
+<mat-card class="vote-card app-content" (swipeleft)="swipeAnimation = 'left';downVote(car)" (swiperight)="swipeAnimation = 'right';upVote(car)"
   [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
   <app-car-view [car]="car" [user]="user">
     <mat-card-header>
