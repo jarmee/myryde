@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
+import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators, FormControl, FormArray} from '@angular/forms';
 
 @Component({
   selector: 'app-car-input',
@@ -66,4 +66,7 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
     };
   }
 
+  get pictureControls(): FormArray {
+    return <FormArray> this.carFormGroup.get('pictures');
+  }
 }

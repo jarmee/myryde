@@ -1,7 +1,7 @@
 <form [formGroup]="carFormGroup" class="car-form-container">
 
   <div style="vertical-align: middle;">
-      <app-picture-input *ngFor="let pictureControl of carFormGroup.get('pictures').controls"
+      <app-picture-input *ngFor="let pictureControl of pictureControls.controls"
                          [formControl]="pictureControl" >
       </app-picture-input>
   </div>
