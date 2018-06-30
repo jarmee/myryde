@@ -10,19 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
-  currentUserId: string;
+  loggedInUser: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.currentUser.pipe(
-      pluck('id')
-    ).subscribe((id: string) => this.currentUserId = id);
+    this.loggedInUser = this.authService.loggedInUserId;
   }
 
-  goToCurrentUserProfile() {
-    this.authService.currentUser.pipe(
-      pluck('id')
-    ).subscribe((id: string) => this.router.navigate(['/userprofile', id]));
-  }
 }

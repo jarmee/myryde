@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, merge, combineLatest, Subscription } from 'rxjs';
 import { Car } from 'src/app/shared/car.model';
 import { DataService } from 'src/app/shared/services/data.service';
 import { User } from 'src/app/shared/user.model';
-import { withLatestFrom, concatMap, map } from 'rxjs/operators';
+import { withLatestFrom, concatMap, map, tap, switchMap, first, skip } from 'rxjs/operators';
 import { trigger, style, state, transition, animate, keyframes } from '@angular/animations';
+import { VoteService } from '../shared/services/vote.service';
+import { AuthService } from '../shared/services/auth.service';
+import { VoteType, Vote } from '../shared/vote.model';
 
 @Component({
   selector: 'app-vote',
@@ -40,7 +43,9 @@ export class VoteComponent implements OnInit {
 
   swipeAnimation = 'idle';
 
-  constructor(private service: DataService) { }
+  _usercar$: Subscription;
+
+  constructor(private service: DataService, private voteService: VoteService, private authService: AuthService) { }
 
   onAnimationEnd(event: any) {
   }
@@ -49,30 +54,51 @@ export class VoteComponent implements OnInit {
     this.fetchRandom();
   }
 
-  onSwipe(event) {
-    // if (this.swipeAnimation === 'idle') {
-    // this.swipeAnimation = 'right';
-    this.fetchRandom();
-    // }
+  upVote(car) {
+    this.authService.currentUser.pipe(switchMap(user => this.voteService.createNewVote(user, car, VoteType.Up))).subscribe(() => {
+      this.fetchRandom();
+    });
+
   }
 
-  upVote() {
-    this.fetchRandom();
-  }
+  downVote(car) {
+    this.authService.currentUser.pipe(
+      // tap(user => console.log(user, car)),
+      switchMap(user => this.voteService.createNewVote(user, car, VoteType.Down)),
+    ).subscribe(() => {
+      this.fetchRandom();
+    });
 
-  downVote() {
-    this.fetchRandom();
   }
 
   fetchRandom() {
-    this.service.getCarToVote()
-      .pipe(
-        concatMap((car: Car) => this.service.getUserById(car.id)
-          .pipe(map(user => [car, user])))
-      ).subscribe(([car, user]) => {
-        this.car = <Car>car;
-        this.user = <User>user;
-      });
-  }
+    if (this._usercar$) {
+      this._usercar$.unsubscribe();
+    }
 
+    this._usercar$ = combineLatest(
+      this.voteService.getMyVotes().pipe(
+        map(votes => votes.map(vote => vote.carId))
+      ),
+      this.authService.currentUser.pipe(switchMap(user => this.service.getCarByUserId(user.id).pipe(
+        map(car => car.id)
+      )))
+    ).pipe(
+      map(([arr, singleVal]) => [...arr, singleVal]),
+      switchMap(blacklist => {
+        return this.service.getCarToVote(blacklist).pipe(
+          skip(1),
+          first(),
+          concatMap((car: Car) => this.service.getUserById(car.id)
+            .pipe(map(user => [car, user]))),
+        );
+      }),
+      first()
+    ).subscribe(([car, user]) => {
+
+      this.car = car as Car;
+      this.user = user as User;
+    });
+
+  }
 }

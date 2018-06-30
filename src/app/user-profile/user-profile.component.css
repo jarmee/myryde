@@ -1,3 +1,7 @@
-mat-card{
+mat-card, .logout{
     margin: 8px;
+}
+
+.logout {
+  display: block;
 }
