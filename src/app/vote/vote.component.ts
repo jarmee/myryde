@@ -49,7 +49,7 @@ export class VoteComponent implements OnInit {
     this.fetchRandom();
   }
 
-  onSwipe() {
+  onSwipe(event) {
     // if (this.swipeAnimation === 'idle') {
     // this.swipeAnimation = 'right';
     this.fetchRandom();

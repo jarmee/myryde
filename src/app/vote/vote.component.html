@@ -1,7 +1,6 @@
 <app-header title="Vote">
 </app-header>
-<mat-card class="vote-card app-content" (swipeleft)="swipeAnimation = 'left'" (swiperight)="swipeAnimation = 'right'" (swipe)="onSwipe($event)"
-  [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
+<mat-card class="vote-card app-content" (swipeleft)="swipeAnimation = 'left'" (swiperight)="swipeAnimation = 'right'" (swipe)="onSwipe($event)" [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
   <app-car-view [car]="car" [user]="user">
     <mat-card-header>
       <img mat-card-avatar [src]="user?.picture">
@@ -10,11 +9,11 @@
     </mat-card-header>
   </app-car-view>
   <mat-card-actions>
-    <button mat-fab (click)="upVote(car)">
+    <button mat-fab (click)="upVote()">
       <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
     </button>
     <span class="fill-remaining-space"></span>
-    <button mat-fab (click)="downVote(car)" color="primary">
+    <button mat-fab (click)="downVote()" color="primary">
       <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
     </button>
   </mat-card-actions>

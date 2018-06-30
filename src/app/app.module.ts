@@ -65,7 +65,7 @@ import { UserService } from './shared/services/user.service';
   ],
   providers: [
     DataService,
-    { provide: ENDPOINT_URL, useValue: 'http://localhost:4200/assets' },
+    { provide: ENDPOINT_URL, useValue: environment.mockDataUrl },
     MockDataService,
     AuthService,
     AuthGuardService,
