@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import {Observable, Subject} from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { UploadService } from '../shared/services/upload.service';
 
 @Component({
   selector: 'app-picture-input',
@@ -22,21 +23,28 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
   onChangeCallback = (_: any) => { };
   onTouchedCallback = () => { };
 
-  constructor() { }
+  constructor(private uploadService: UploadService) { }
 
   ngOnInit() {
     this.id = (Math.random() * 1000) + '';
   }
 
   changePictureFromUserPick(event: any) {
-    const observable = getFileSourceFromFilePicker(event);
-    if (observable) {
-      getFileSourceFromFilePicker(event)
-        .subscribe(src => {
-          this.src = src;
-          this.onChangeCallback(src);
-        });
-    }
+
+    this.uploadService.upload(event.target.files[0]).then(val => {
+      this.src = val;
+      console.log(val);
+      this.onChangeCallback(val);
+    });
+
+    // const observable = getFileSourceFromFilePicker(event);
+    // if (observable) {
+    //   getFileSourceFromFilePicker(event)
+    //     .subscribe(src => {
+    //       this.src = src;
+    //       this.onChangeCallback(src);
+    //     });
+    // }
 
   }
 
