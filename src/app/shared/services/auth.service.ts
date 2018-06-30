@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User as FirebaseUser } from 'firebase';
-import { Observable, ReplaySubject, from } from 'rxjs';
-import { distinctUntilChanged, tap, switchMap, map } from 'rxjs/operators';
+import {Observable, from, ReplaySubject} from 'rxjs';
+import { distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/user.model';
 import { CarService } from 'src/app/shared/services/car.service';
@@ -16,6 +16,7 @@ export interface ErrorResponse {
 export class AuthService {
 
   loggedIn = false;
+  loggedInUserId = null;
   _currentUser: ReplaySubject<FirebaseUser> = new ReplaySubject<FirebaseUser>();
 
   constructor(
@@ -43,12 +44,24 @@ export class AuthService {
         }
 
         this.afAuth.auth.onAuthStateChanged((user) => {
-          this._currentUser.next(user);
           if (user) {
-            this.loggedIn = true;
-            resolve(true);
+            this.userService.getById(user.uid).subscribe(
+              (userFromDB: any) => {
+                this.loggedInUserId = userFromDB.id;
+                this.loggedIn = true;
+                resolve(true);
+              },
+              () => {
+                this.loggedInUserId = null;
+                this.loggedIn = false;
+                resolve(false);
+              }
+            );
+
+          } else {
+            resolve(false);
           }
-          resolve(false);
+
         });
       }
     );
