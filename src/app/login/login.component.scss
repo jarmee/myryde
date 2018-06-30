@@ -1,22 +1,101 @@
-:host {
-  width: 100%;
-  height: 100%;
-  display: block;
+// :host {
+//   width: 100%;
+//   height: 100%;
+//   display: block;
+
+//   .background {
+//     height: 100%;
+//     width: 100%;
+//     background-color: #3f51b5;
+//     //background: url('https://images.pexels.com/photos/474/black-and-white-car-vehicle-vintage.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+//     background: url('/assets/login-background.jpg');
+//     display: block;
+//     position: absolute;
+//     background-size: cover;
+//     background-position: center;
+//     opacity: 0.5;
+//   }
+
+//   .logo {
+//     text-align: center;
+//     color: #fff;
+//     background: #3f51b5;
+//     z-index: 1;
+//     border: 5px solid #3f51b5;
+//     padding-left: 10px;
+//     padding-right: 10px;
+//     border-radius: 5px;
+
+//     h1 {
+//       line-height: 0.25em;
+//     }
+
+//     span {
+//       font-size: 0.75em;
+//     }
+//   }
+
+//   .login-tile {
+//     /deep/ .mat-figure {
+//       padding-top: 45px !important;
+//       align-items: start !important;
+//     }
+//   }
+
+//   mat-grid-list {
+
+//     .password, .user, .login {
+//       width: 100%;
+//     }
+//   }
+// }
+
+:host{
+  display:flex;
+  flex-direction: column;
+  height:100%;
+  width:100%;
+}
+
+
+.register{
+  flex-basis: 260px;
+  flex-shrink: 0;
+  display:flex;
+  justify-content: center;
+  form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.login{
+  width:100%;
+}
+
 
   .background {
-    height: 100%;
-    width: 100%;
+    flex-basis: 320px;
+    flex-shrink: 1;
+    flex-grow: 2;
     background-color: #3f51b5;
     //background: url('https://images.pexels.com/photos/474/black-and-white-car-vehicle-vintage.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background: url('/assets/login-background.jpg');
-    display: block;
-    position: absolute;
     background-size: cover;
     background-position: center;
     opacity: 0.5;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .logo{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
-  .logo {
+    .emblem {
     text-align: center;
     color: #fff;
     background: #3f51b5;
@@ -34,18 +113,3 @@
       font-size: 0.75em;
     }
   }
-
-  .login-tile {
-    /deep/ .mat-figure {
-      padding-top: 45px !important;
-      align-items: start !important;
-    }
-  }
-
-  mat-grid-list {
-
-    .password, .user, .login {
-      width: 100%;
-    }
-  }
-}
