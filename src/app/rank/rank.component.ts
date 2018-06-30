@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../shared/user.model';
 import { DataService } from '../shared/services/data.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rank',

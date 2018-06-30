@@ -25,9 +25,7 @@ export class DataService {
   }
 
   getTopUsers(): Observable<User[]> {
-    return timer(500).pipe(
-      switchMap(() => this.service.getUsersByRankRange(1, 10))
-    );
+    return this.userService.getTopUsers();
   }
 
   getUserById(id: string): Observable<User> {
