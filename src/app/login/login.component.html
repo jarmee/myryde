@@ -1,6 +1,13 @@
-<div class="background"></div>
-<mat-grid-list cols="1">
+<mat-grid-list cols="1" rows="2">
   <mat-grid-tile>
+      <div class="background">
+      </div>
+      <div class="logo">
+        <h1>MyRy</h1>
+        <span>Life is a fuckin race...</span>
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile class="login-tile">
     <form novalidate (ngSubmit)="login()" [formGroup]="form">
       <mat-form-field class="user">
         <input matInput placeholder="E-Mail" formControlName="user">
@@ -15,10 +22,10 @@
         </mat-error>
       </mat-form-field>
       <div class="button-row">
-        <button [disabled]="form.invalid" mat-raised-button class="login" color="primary">Login</button>
+        <button mat-raised-button class="login" color="primary">Login</button>
       </div>
       <br>
-      <button mat-raised-button class="login" color="secondary" type="button" (click)="register()" [disabled]="form.invalid">REGISTER</button>
+      <button mat-raised-button class="login" color="secondary" type="button" (click)="register()" [disabled]="form.invalid">Register</button>
     </form>
   </mat-grid-tile>
 </mat-grid-list>

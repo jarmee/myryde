@@ -1,8 +1,7 @@
-.car-form-container {
-  display: flex;
-  flex-direction: column;
+.car-form-container > mat-form-field {
+  width: 100%;
 }
 
-.car-form-container > * {
-  width: 100%;
+.car-form-container > app-picture-input {
+  display: inline-block
 }

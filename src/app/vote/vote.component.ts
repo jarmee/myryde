@@ -95,6 +95,7 @@ export class VoteComponent implements OnInit {
       }),
       first()
     ).subscribe(([car, user]) => {
+
       this.car = car as Car;
       this.user = user as User;
     });

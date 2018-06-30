@@ -9,7 +9,8 @@ export const environment = {
   databaseURL: 'https://myryde-5bc99.firebaseio.com',
   projectId: 'myryde-5bc99',
   storageBucket: 'myryde-5bc99.appspot.com',
-  messagingSenderId: '991970532326'
+  messagingSenderId: '991970532326',
+  mockDataUrl: 'http://localhost:4200/assets'
 };
 
 /*

@@ -20,10 +20,21 @@ export class DataService {
 
   getCarToVote(blacklist: string[]): Observable<Car> {
     return this.carService.getAll().pipe(
-      tap(cars => {
-        console.log(cars);
+      map(cars => {
+        const filteredCars = cars.filter(car => {
+          return !blacklist.includes(car.id);
+        });
+
+        if (filteredCars.length === 0) {
+          console.warn('already Voted for all cars. No fallbacklogic implemented yet');
+          return cars;
+        }
+        return filteredCars;
+
       }),
-      map(cars => cars[Math.ceil(Math.random() * cars.length - 1)])
+      map(cars => {
+        return cars[Math.ceil(Math.random() * cars.length - 1)];
+      })
     );
   }
 

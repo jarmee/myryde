@@ -27,18 +27,31 @@ export class AuthService {
   get currentUser(): Observable<User> {
     return this._currentUser.pipe(
       distinctUntilChanged(),
-      switchMap((fireBaseUser: FirebaseUser) => this.userService.getById(fireBaseUser.uid))
+      switchMap((fireBaseUser: FirebaseUser) => {
+        return this.userService.getById(fireBaseUser && fireBaseUser.uid)
+      })
     );
   }
 
-  isLoggedIn() {
-    return this.loggedIn || this.afAuth.auth.onAuthStateChanged((user) => {
-      this._currentUser.next(user);
-      if (user) {
-        this.loggedIn = true;
+  isLoggedIn(): Promise<boolean> {
+    return new Promise(
+      (resolve) => {
+
+        if (this.loggedIn) {
+          resolve(true);
+          return;
+        }
+
+        this.afAuth.auth.onAuthStateChanged((user) => {
+          this._currentUser.next(user);
+          if (user) {
+            this.loggedIn = true;
+            resolve(true);
+          }
+          resolve(false);
+        });
       }
-      return user;
-    });
+    );
   }
 
   signUp(email: string, password: string): Observable<User> {
@@ -57,7 +70,7 @@ export class AuthService {
     );
   }
 
-  signOut(): Promise<any> {
+  signOut(): Promise<void> {
     return this.afAuth.auth.signOut().then(
       () => {
         this.loggedIn = false;

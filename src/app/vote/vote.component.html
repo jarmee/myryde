@@ -4,17 +4,17 @@
   [@swipeAnimation]="swipeAnimation" (@swipeAnimation.done)="swipeAnimation = 'idle';">
   <app-car-view [car]="car" [user]="user">
     <mat-card-header>
-      <img mat-card-avatar [src]="user?.picture">
+      <img mat-card-avatar *ngIf="user && user.picture" [src]="user?.picture">
       <mat-card-title>{{ user?.name }}</mat-card-title>
       <mat-card-subtitle>{{ user?.location }}</mat-card-subtitle>
     </mat-card-header>
   </app-car-view>
   <mat-card-actions>
-    <button mat-fab (click)="upVote(car)">
+    <button mat-fab (click)="upVote()">
       <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
     </button>
     <span class="fill-remaining-space"></span>
-    <button mat-fab (click)="downVote(car)" color="primary">
+    <button mat-fab (click)="downVote()" color="primary">
       <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
     </button>
   </mat-card-actions>

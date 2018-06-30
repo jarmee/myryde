@@ -1,5 +1,11 @@
 <form [formGroup]="carFormGroup" class="car-form-container">
-  <!--<app-picture-input *ngFor="let picture of carFormGroup.get('pictures').controls" name="picture" formControlName="picture"></app-picture-input>-->
+
+  <div style="vertical-align: middle;">
+      <app-picture-input *ngFor="let pictureControl of pictureControls.controls"
+                         [formControl]="pictureControl" >
+      </app-picture-input>
+  </div>
+
   <mat-form-field>
     <input (blur)="registerTouch" matInput placeholder="Brand" name="brand" formControlName="brand">
   </mat-form-field>

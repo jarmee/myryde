@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
+import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators, FormControl, FormArray} from '@angular/forms';
 
 @Component({
   selector: 'app-car-input',
@@ -24,7 +24,11 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     this.carFormGroup = this.fb.group({
       id: '',
-      picture: this.fb.array(['']),
+      pictures: this.fb.array([
+        '',
+        '',
+        ''
+      ]),
       brand: ['', Validators.required],
       model: '',
       engine: '',
@@ -32,7 +36,6 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
       acceleration: '',
       description: ''
     });
-
   }
 
   registerOnChange(fn: any): void {
@@ -53,7 +56,7 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
 
   carModel() {
     return {
-      pictures: this.fb.array(['']),
+      pictures: [''],
       brand: '',
       model: '',
       engine: '',
@@ -63,4 +66,7 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
     };
   }
 
+  get pictureControls(): FormArray {
+    return <FormArray> this.carFormGroup.get('pictures');
+  }
 }

@@ -2,14 +2,11 @@
 @import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-@include mat-core();
-
-$primary: mat-palette($mat-indigo);
-
 html, body {
   padding: 0;
   margin: 0;
   height: 100%;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
 .material-icons {
