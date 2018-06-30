@@ -6,7 +6,7 @@ import { Car } from '../car.model';
 import { User } from '../user.model';
 import { Observable, from } from 'rxjs';
 import { AuthService } from './auth.service';
-import { switchMap, mergeMap, reduce, map, tap, toArray, scan, filter } from 'rxjs/operators';
+import { switchMap, mergeMap, reduce, map, tap, toArray, scan, filter, distinctUntilKeyChanged } from 'rxjs/operators';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -39,6 +39,7 @@ export class VoteService extends BaseService<Vote> {
     return this.userService.getAll().pipe(
       mergeMap((users) => from(users)),
       filter((user: User) => user.name !== undefined && user.picture !== undefined),
+      distinctUntilKeyChanged('id'),
       mergeMap((user) => this.getByUser(user).pipe(
         map((votes) => {
           return votes.reduce((acc: any[], vote: Vote) => ([user, (acc[1] + 1 * (vote.type === VoteType.Up ? 1 : -1))]), [user, 0]);
