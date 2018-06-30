@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User as FirebaseUser } from 'firebase';
-import {Observable, from, ReplaySubject} from 'rxjs';
-import { distinctUntilChanged, tap, switchMap } from 'rxjs/operators';
+import {Observable, from, of} from 'rxjs';
+import { tap, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/user.model';
 import { CarService } from 'src/app/shared/services/car.service';
@@ -17,7 +16,6 @@ export class AuthService {
 
   loggedIn = false;
   loggedInUserId = null;
-  _currentUser: ReplaySubject<FirebaseUser> = new ReplaySubject<FirebaseUser>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -25,13 +23,12 @@ export class AuthService {
     private carService: CarService
   ) {}
 
+  /**
+   * @deprecated
+   * @returns {Observable<User>}
+   */
   get currentUser(): Observable<User> {
-    return this._currentUser.pipe(
-      distinctUntilChanged(),
-      switchMap((fireBaseUser: FirebaseUser) => {
-        return this.userService.getById(fireBaseUser && fireBaseUser.uid)
-      })
-    );
+    return of({ id : this.loggedInUserId });
   }
 
   isLoggedIn(): Promise<boolean> {
@@ -69,17 +66,22 @@ export class AuthService {
 
   signUp(email: string, password: string): Observable<User> {
     return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password)).pipe(
-      tap((authInfo) => this._currentUser.next(authInfo.user)),
-      tap(() => this.loggedIn = true),
       switchMap((authInfo) => this.userService.createEmptyUser(authInfo.user)),
-      tap((user) => this.carService.createEmptyCar(user))
+      tap((user) => {
+        this.loggedInUserId = user.id;
+        this.loggedIn = true;
+        this.carService.createEmptyCar(user);
+      })
     );
   }
 
   signIn(email: string, password: string): Observable<any> {
     return from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
-      tap(() => this.loggedIn = true),
-      switchMap((authInfo) => this.userService.getById(authInfo.user.uid))
+      switchMap((authInfo) => this.userService.getById(authInfo.user.uid)),
+      tap((user) => {
+        this.loggedInUserId = user.id;
+        this.loggedIn = true;
+      })
     );
   }
 
