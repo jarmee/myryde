@@ -51,7 +51,7 @@ export class VoteService extends BaseService<Vote> {
         return users;
       }, []),
       map((users) => {
-        return users.sort((a, b) => (a.score > b.score ? 1 : -1));
+        return users.sort((a, b) => (a.score < b.score ? 1 : -1));
       })
     );
   }
