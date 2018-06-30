@@ -18,21 +18,21 @@ export class VoteService extends BaseService<Vote> {
     super('/votes', store);
   }
 
-  createNewVote(user: User, car: Car, vote: VoteType): Observable<void> {
-    const toCreate = ({ userId: user.id, carId: car.id, type: vote, timestamp: Date.now() });
+  createNewVote(userId, car: Car, vote: VoteType): Observable<void> {
+    const toCreate = ({ userId: userId, carId: car.id, type: vote, timestamp: Date.now() });
     return super.createWithId(toCreate);
   }
 
-  private getUserVotes(user: User): Observable<Vote[]> {
-    return super.getByQuery('userId', '==', user.id);
+  private getUserVotes(userId): Observable<Vote[]> {
+    return super.getByQuery('userId', '==', userId);
   }
 
   getMyVotes(): Observable<Vote[]> {
-    return this.authService.currentUser.pipe(switchMap(user => this.getUserVotes(user)));
+    return this.getUserVotes(this.authService.loggedInUserId);
   }
 
   getByUser(user: User): Observable<Vote[]> {
-    return this.getUserVotes(user);
+    return this.getUserVotes(user.id);
   }
 
   getTopUsers(): Observable<User[]> {

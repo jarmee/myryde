@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {Observable, from, of} from 'rxjs';
+import {Observable, from} from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/user.model';
@@ -22,14 +22,6 @@ export class AuthService {
     private userService: UserService,
     private carService: CarService
   ) {}
-
-  /**
-   * @deprecated
-   * @returns {Observable<User>}
-   */
-  get currentUser(): Observable<User> {
-    return of({ id : this.loggedInUserId });
-  }
 
   isLoggedIn(): Promise<boolean> {
     return new Promise(

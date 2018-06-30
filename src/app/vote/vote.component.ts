@@ -55,17 +55,14 @@ export class VoteComponent implements OnInit {
   }
 
   upVote(car) {
-    this.authService.currentUser.pipe(switchMap(user => this.voteService.createNewVote(user, car, VoteType.Up))).subscribe(() => {
+    this.voteService.createNewVote(this.authService.loggedInUserId, car, VoteType.Up).subscribe(() => {
       this.fetchRandom();
     });
 
   }
 
   downVote(car) {
-    this.authService.currentUser.pipe(
-      // tap(user => console.log(user, car)),
-      switchMap(user => this.voteService.createNewVote(user, car, VoteType.Down)),
-    ).subscribe(() => {
+    this.voteService.createNewVote(this.authService.loggedInUserId, car, VoteType.Down).subscribe(() => {
       this.fetchRandom();
     });
 
@@ -80,9 +77,9 @@ export class VoteComponent implements OnInit {
       this.voteService.getMyVotes().pipe(
         map(votes => votes.map(vote => vote.carId))
       ),
-      this.authService.currentUser.pipe(switchMap(user => this.service.getCarByUserId(user.id).pipe(
+      this.service.getCarByUserId(this.authService.loggedInUserId).pipe(
         map(car => car.id)
-      )))
+      )
     ).pipe(
       map(([arr, singleVal]) => [...arr, singleVal]),
       switchMap(blacklist => {
