@@ -29,6 +29,7 @@ import { CarInputComponent } from './car-input/car-input.component';
 import { PictureInputComponent } from './picture-input/picture-input.component';
 import { UserService } from './shared/services/user.service';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { ImageGalleryComponent } from './car-view/image-gallery/image-gallery.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     CarViewComponent,
     UserProfileEditComponent,
     CarInputComponent,
-    PictureInputComponent
+    PictureInputComponent,
+    ImageGalleryComponent
   ],
   imports: [
     CommonModule,
