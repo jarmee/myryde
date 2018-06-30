@@ -24,7 +24,11 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     this.carFormGroup = this.fb.group({
       id: '',
-      picture: this.fb.array(['']),
+      pictures: this.fb.array([
+        '',
+        '',
+        ''
+      ]),
       brand: ['', Validators.required],
       model: '',
       engine: '',
@@ -32,7 +36,6 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
       acceleration: '',
       description: ''
     });
-
   }
 
   registerOnChange(fn: any): void {
@@ -53,7 +56,7 @@ export class CarInputComponent implements OnInit, ControlValueAccessor {
 
   carModel() {
     return {
-      pictures: this.fb.array(['']),
+      pictures: [''],
       brand: '',
       model: '',
       engine: '',
