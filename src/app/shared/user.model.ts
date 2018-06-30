@@ -7,6 +7,7 @@ export interface User extends Document {
   picture?: string;
   location?: string;
   gender?: string;
+  score?: number;
 }
 
 export interface UserFormModel extends User {
