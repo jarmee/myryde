@@ -3,7 +3,7 @@ import { map, mapTo } from 'rxjs/operators';
 import { Observable, from } from 'rxjs';
 
 export interface Document {
-  id: any;
+  id?: any;
 }
 
 export abstract class BaseService<T extends Document> {

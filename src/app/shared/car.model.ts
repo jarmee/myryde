@@ -1,4 +1,6 @@
-export interface Car {
+import { Document } from './services/base.service';
+
+export interface Car extends Document {
   pictures?: string[];
   brand?: string;
   model?: string;
@@ -6,6 +8,5 @@ export interface Car {
   topSpeed?: number;
   acceleration?: number;
   userId: string;
-  id?: string;
   description?: string;
 }
