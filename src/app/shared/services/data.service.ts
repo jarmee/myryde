@@ -6,6 +6,7 @@ import { switchMap, map, tap } from 'rxjs/operators';
 import { User } from '../user.model';
 import { CarService } from 'src/app/shared/services/car.service';
 import { UserService } from './user.service';
+import { VoteService } from './vote.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class DataService {
   constructor(
     private service: MockDataService,
     private carService: CarService,
-    private userService: UserService
+    private userService: UserService,
+    private voteService: VoteService,
   ) { }
 
   getCarToVote(blacklist: string[]): Observable<Car> {
@@ -39,7 +41,7 @@ export class DataService {
   }
 
   getTopUsers(): Observable<User[]> {
-    return this.userService.getTopUsers();
+    return this.voteService.getTopUsers();
   }
 
   getUserById(id: string): Observable<User> {

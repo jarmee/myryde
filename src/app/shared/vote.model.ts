@@ -11,8 +11,3 @@ export enum VoteType {
   Up = 1,
   Down = -1
 }
-
-export interface Score {
-  userId: string;
-  value: number;
-}

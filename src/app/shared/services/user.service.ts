@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User as FirebaseUser } from 'firebase';
-import { Observable, from } from 'rxjs';
+import { Observable, from, combineLatest } from 'rxjs';
 import { BaseService } from './base.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { User } from 'src/app/shared/user.model';
-import { mapTo, mergeMap, groupBy, map, switchMap, tap, scan, distinctUntilKeyChanged, toArray } from 'rxjs/operators';
-import { Vote, VoteType, Score } from 'src/app/shared/vote.model';
+import { mapTo, mergeMap, groupBy, map, switchMap, tap, scan, distinctUntilKeyChanged, toArray, reduce } from 'rxjs/operators';
+import { Vote, VoteType } from 'src/app/shared/vote.model';
+import { VoteService } from 'src/app/shared/services/vote.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,5 @@ export class UserService extends BaseService<User> {
     return super.create(toCreate).pipe(
       mapTo(toCreate)
     );
-  }
-
-  getTopUsers(): Observable<User[]> {
-    return this.getAll();
   }
 }
