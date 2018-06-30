@@ -17,8 +17,4 @@ export class CarViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  get pictureUrl() {
-    return (this.car && this.car.pictures && this.car.pictures.length > 0 ? this.car.pictures[0] : '');
-  }
-
 }

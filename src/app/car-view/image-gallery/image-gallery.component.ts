@@ -28,6 +28,8 @@ export class ImageGalleryComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: any): void {
+    this.pictureUrl = null;
+    this.selectedIndex = null;
     this.loadDefaultSelection();
   }
 
