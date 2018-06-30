@@ -12,11 +12,11 @@
   </app-car-view>
 
   <mat-card-actions align="end" style="padding: 0 10px 15px 10px;">
-    <button mat-fab (click)="upVote()">
+    <button mat-fab (click)="upVote(car)">
       <mat-icon aria-label="Up Vote">favorite</mat-icon>
     </button>
     <span class="fill-remaining-space"></span>
-    <button mat-fab (click)="downVote()" color="primary">
+    <button mat-fab (click)="downVote(car)" color="primary">
       <mat-icon aria-label="Down Vote">close</mat-icon>
     </button>
   </mat-card-actions>
