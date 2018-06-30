@@ -28,6 +28,7 @@ import { UserProfileEditComponent } from './user-profile/user-profile-edit/user-
 import { CarInputComponent } from './car-input/car-input.component';
 import { PictureInputComponent } from './picture-input/picture-input.component';
 import { UserService } from './shared/services/user.service';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { UserService } from './shared/services/user.service';
     }),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     FormsModule,
     ReactiveFormsModule
   ],
