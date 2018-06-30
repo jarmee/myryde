@@ -39,6 +39,10 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
+    console.log(obj);
+    if (obj instanceof Array) {
+      console.log('yepppp');
+    }
     this.src = obj;
   }
 

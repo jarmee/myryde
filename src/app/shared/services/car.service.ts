@@ -5,6 +5,7 @@ import { FirebaseFirestore } from 'angularfire2';
 import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
+import { User } from 'src/app/shared/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,10 @@ export class CarService extends BaseService<Car> {
       map((cars) => cars[0]),
     );
   }
+
+  createEmptyCar(user: User): Observable<void> {
+    const toCreate = ({ userId : user.id});
+    return super.createWithId(toCreate);
+  }
 }
-}
+

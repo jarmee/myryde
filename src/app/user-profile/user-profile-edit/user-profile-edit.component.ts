@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getFileSourceFromFilePicker } from '../../utils/file-upload';
 import { DataService } from 'src/app/shared/services/data.service';
-import { User } from 'src/app/shared/user.model';
+import { User, UserFormModel } from 'src/app/shared/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { pluck, tap, switchMap } from 'rxjs/operators';
+import { pluck, tap, switchMap, withLatestFrom, map, concatMap, combineLatest } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -22,12 +22,15 @@ export class UserProfileEditComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  onSubmit(user: User) {
+  onSubmit(user: UserFormModel) {
     user.id = this.route.snapshot.paramMap.get('id');
-    this.dataService.updateUser(user)
-      .subscribe({
-        next: () => this.router.navigate(['/userprofile', user.id])
-      });
+    const car = user.car;
+    delete user.car;
+    this.dataService.updateUser(user).pipe(
+      switchMap(() => this.dataService.updateCar(car))
+    ).subscribe({
+      next: () => this.router.navigate(['/userprofile', user.id])
+    });
   }
 
   ngOnInit(): void {
@@ -36,11 +39,17 @@ export class UserProfileEditComponent implements OnInit {
       gender: [''],
       location: [''],
       country: [''],
-      picture: ['']
+      picture: [''],
+      car: ['']
     });
     this.route.params.pipe(
       pluck('id'),
-      switchMap((id: string) => this.dataService.getUserById(id))
-    ).subscribe((user) => this.form.patchValue(user));
+      switchMap((id: string) => this.dataService.getUserById(id)),
+      map(user => <UserFormModel>user),
+      concatMap((user: User) => this.dataService.getCarByUserId(user.id)
+        .pipe(map(car => ({ ...user, car }))))
+    ).subscribe((user) => {
+      this.form.patchValue(user);
+    });
   }
 }

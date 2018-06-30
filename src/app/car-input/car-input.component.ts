@@ -13,7 +13,7 @@ import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validat
     }
   ]
 })
-export class CarInputComponent implements OnInit, ControlValueAccessor{
+export class CarInputComponent implements OnInit, ControlValueAccessor {
 
   carFormGroup: FormGroup;
   registerChange: Function;
@@ -23,7 +23,8 @@ export class CarInputComponent implements OnInit, ControlValueAccessor{
 
   ngOnInit() {
     this.carFormGroup = this.fb.group({
-      picture: '',
+      id: '',
+      picture: this.fb.array(['']),
       brand: ['', Validators.required],
       model: '',
       engine: '',
@@ -46,12 +47,13 @@ export class CarInputComponent implements OnInit, ControlValueAccessor{
   }
 
   writeValue(obj: any): void {
-    this.carFormGroup.patchValue(obj || this.carModel());
+    const car = obj || this.carModel();
+    this.carFormGroup.patchValue(car);
   }
 
   carModel() {
     return {
-      picture: '',
+      pictures: this.fb.array(['']),
       brand: '',
       model: '',
       engine: '',

@@ -41,4 +41,8 @@ export class DataService {
   updateUser(user: User): Observable<void> {
     return this.userService.update(user);
   }
+
+  updateCar(car: Car): Observable<void> {
+    return this.carService.update(car);
+  }
 }

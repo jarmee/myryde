@@ -5,6 +5,7 @@ import { Observable, ReplaySubject, from } from 'rxjs';
 import { distinctUntilChanged, tap, switchMap, map } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/user.model';
+import { CarService } from 'src/app/shared/services/car.service';
 
 export interface ErrorResponse {
   code: string;
@@ -19,7 +20,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private userService: UserService
+    private userService: UserService,
+    private carService: CarService
   ) {}
 
   get currentUser(): Observable<User> {
@@ -43,7 +45,8 @@ export class AuthService {
     return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password)).pipe(
       tap((authInfo) => this._currentUser.next(authInfo.user)),
       tap(() => this.loggedIn = true),
-      switchMap((authInfo) => this.userService.createEmptyUser(authInfo.user))
+      switchMap((authInfo) => this.userService.createEmptyUser(authInfo.user)),
+      tap((user) => this.carService.createEmptyCar(user))
     );
   }
 

@@ -1,5 +1,5 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { map } from 'rxjs/operators';
+import { map, mapTo } from 'rxjs/operators';
 import { Observable, from } from 'rxjs';
 
 export interface Document {
@@ -35,6 +35,12 @@ export abstract class BaseService<T extends Document> {
 
   create(payload: Partial<T>): Observable<void> {
     return from(this.afs.collection<T>(this.collection).doc(payload.id).set(payload));
+  }
+
+  createWithId(payload: T): Observable<void> {
+    return from(this.afs.collection<T>(this.collection).add(payload)).pipe(
+      mapTo(null)
+    );
   }
 
   update(payload: Partial<T>): Observable<void> {

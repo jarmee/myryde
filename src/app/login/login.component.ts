@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     const password = this.form.get('password').value;
     this.authService.signIn(userName, password)
       .subscribe({
-        next: (user) => this.router.navigate(['/userprofile', user.id]),
+        next: (user) => this.router.navigate(['/userprofile', user.id, 'edit']),
         error: (error) => this.form.get(getInvalidField(error)).setErrors({ loginFailed: error })
       });
   }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
   register() {
     this.authService.signUp(this.form.value.user, this.form.value.password)
       .subscribe({
-        next: (user) => this.router.navigate(['/userprofile', user.id]),
+        next: (user) => this.router.navigate(['/userprofile', user.id, 'edit']),
         error: (error) => this.form.get(getInvalidField(error)).setErrors({ loginFailed: error })
       });
   }
