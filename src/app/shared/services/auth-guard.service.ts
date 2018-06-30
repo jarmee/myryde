@@ -21,10 +21,13 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
 
   private checkLoggedIn() {
-    if ( this.authService.isLoggedIn() ) {
-      return true;
-    }
-    this.router.navigate(['/']);
-    return false;
+    return this.authService.isLoggedIn().then(
+      (logged) => {
+        if (!logged) {
+          this.router.navigate(['/login']);
+        }
+        return logged;
+      }
+    );
   }
 }

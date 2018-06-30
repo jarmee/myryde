@@ -9,6 +9,7 @@
       <div style="display:flex; flex-direction: column; margin-right: auto; max-width: 50%;">
         <mat-card-title>{{ ( user$ | async)?.name || 'Not defined yet'}}</mat-card-title>
         <mat-card-subtitle>{{ ( user$ | async)?.gender || 'Unicorn'}}, {{ ( user$ | async)?.location || 'Mars'}}</mat-card-subtitle>
+        <mat-card-subtitle><a (click)="logout()">LOGOUT</a></mat-card-subtitle>
       </div>
       <img mat-card-md-image [src]="(user$ | async)?.picture" alt="test">
     </div>
