@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { getFileSourceFromFilePicker } from '../utils/file-upload';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-picture-input',
   templateUrl: './picture-input.component.html',
-  styleUrls: ['./picture-input.component.css'],
+  styleUrls: ['./picture-input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class PictureInputComponent implements OnInit, ControlValueAccessor {
 
   src: any;
+  id: string;
 
   onChangeCallback = (_: any) => { };
   onTouchedCallback = () => { };
@@ -24,6 +25,7 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit() {
+    this.id = (Math.random() * 1000) + '';
   }
 
   changePictureFromUserPick(event: any) {
@@ -39,10 +41,6 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    console.log(obj);
-    if (obj instanceof Array) {
-      console.log('yepppp');
-    }
     this.src = obj;
   }
 
@@ -54,4 +52,21 @@ export class PictureInputComponent implements OnInit, ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
+}
+
+function getFileSourceFromFilePicker(event: any): Observable<string> {
+  const observer = new Subject<string>();
+
+  const fReader = new FileReader();
+  if (event.target.files[0]) {
+
+    fReader.readAsDataURL(event.target.files[0]);
+    fReader.onloadend = function (innerEvent: any) {
+      observer.next(innerEvent.target.result);
+    };
+
+  } else {
+    return null;
+  }
+  return observer.asObservable();
 }

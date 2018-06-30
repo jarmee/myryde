@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { getFileSourceFromFilePicker } from '../../utils/file-upload';
 import { DataService } from 'src/app/shared/services/data.service';
 import { User, UserFormModel } from 'src/app/shared/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { pluck, tap, switchMap, withLatestFrom, map, concatMap, combineLatest } from 'rxjs/operators';
+import { pluck, switchMap, map, concatMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -40,7 +39,7 @@ export class UserProfileEditComponent implements OnInit {
       location: [''],
       country: [''],
       picture: [''],
-      car: ['']
+      car: [{}]
     });
     this.route.params.pipe(
       pluck('id'),

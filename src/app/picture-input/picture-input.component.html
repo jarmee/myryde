@@ -1,7 +1,14 @@
-<div class="image-upload">
-    <label for="file-input">
-        <img mat-card-md-image [src]="src"/>
-    </label>
+<span class="image-upload">
 
-    <input id="file-input" type="file" (change)="changePictureFromUserPick($event)" (click)="onTouchedCallback()"/>
-</div>
+  <label for="{{id}}">
+    <span class="image-placeholder" *ngIf="!src">
+      <mat-icon>add</mat-icon>
+    </span>
+    <img mat-card-md-image *ngIf="src" [src]="src" style="vertical-align: middle; margin: 3px;"/>
+  </label>
+
+  <input id="{{id}}" type="file"
+         (change)="changePictureFromUserPick($event)"
+         (click)="onTouchedCallback()"/>
+
+</span>
